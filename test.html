@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6번 체질(소양체질) 음식 가이드</title>
+    <style>
+        :root {
+            --primary-color: #4a5e8c;
+            --secondary-color: #8c4a5e;
+            --good-bg: #e8f5e9;
+            --bad-bg: #ffebee;
+            --good-border: #66bb6a;
+            --bad-border: #e57373;
+            --black-text: #212121;
+            --blue-text: #0d47a1;
+            --tab-active: #4a5e8c;
+            --tab-inactive: #e0e0e0;
+            --header-bg: #f5f5f5;
+            --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--header-bg);
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        h1 {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin: 20px 0 10px;
+            color: var(--primary-color);
+        }
+        
+        h3 {
+            font-size: 1.2em;
+            margin: 15px 0 10px;
+        }
+        
+        .description {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            text-align: center;
+            font-size: 1.1em;
+            color: #555;
+        }
+        
+        .guide-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .food-section {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section-header {
+            padding: 15px 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .good-header {
+            background-color: var(--good-bg);
+            color: #2e7d32;
+            border-bottom: 3px solid var(--good-border);
+        }
+        
+        .bad-header {
+            background-color: var(--bad-bg);
+            color: #c62828;
+            border-bottom: 3px solid var(--bad-border);
+        }
+        
+        .section-header::before {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        .good-header::before {
+            content: "○";
+            color: #2e7d32;
+            font-size: 1.5em;
+        }
+        
+        .bad-header::before {
+            content: "✗";
+            color: #c62828;
+            font-size: 1.5em;
+        }
+        
+        .content-container {
+            background-color: white;
+            padding: 20px;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            border-bottom: 1px solid #ddd;
+            background-color: #f5f5f5;
+        }
+        
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            background-color: var(--tab-inactive);
+            transition: var(--transition);
+            border-right: 1px solid #ddd;
+        }
+        
+        .tab:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .tab.active {
+            background-color: var(--tab-active);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Food items */
+        .food-category {
+            margin-bottom: 20px;
+        }
+        
+        .category-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .food-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .food-item {
+            padding: 8px 12px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+        
+        .food-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .black-text {
+            color: var(--black-text);
+            border-left-color: var(--black-text);
+        }
+        
+        .blue-text {
+            color: var(--blue-text);
+            border-left-color: var(--blue-text);
+        }
+        
+        .note-box {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #ffb74d;
+        }
+        
+        .note-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #e65100;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: var(--header-bg);
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .food-list {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                flex-grow: 1;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>6번 체질(少陽氣가 虛한 體質) 음식 가이드</h1>
+            <p>본인의 지식, 일반적인 상식과 달라도 이대로 따르셔야 건강이 좋아집니다.</p>
+        </header>
+        
+        <div class="description">
+            <p>소양체질은 성격이 급하고 다혈질이며 열이 많은 체질입니다. 체질에 맞는 음식을 섭취하고 맞지 않는 음식을 피하면 건강 개선에 도움이 됩니다.</p>
+        </div>
+        
+        <div class="guide-container">
+            <!-- 이로운 것 섹션 -->
+            <div class="food-section">
+                <div class="section-header good-header">
+                    이로운 것
+                </div>
+                <div class="content-container">
+                    <div class="tabs good-tabs">
+                        <div class="tab active" data-target="good-grain">곡류</div>
+                        <div class="tab" data-target="good-vegetable">야채류</div>
+                        <div class="tab" data-target="good-meat">육류</div>
+                        <div class="tab" data-target="good-fish">생선류</div>
+                        <div class="tab" data-target="good-seafood">해조류/해물류</div>
+                        <div class="tab" data-target="good-shellfish">패류/고동류</div>
+                        <div class="tab" data-target="good-fruit">과일류</div>
+                        <div class="tab" data-target="good-nuts">견과류</div>
+                        <div class="tab" data-target="good-kimchi">김치류</div>
+                        <div class="tab" data-target="good-jjot">젓갈</div>
+                        <div class="tab" data-target="good-drink">차</div>
+                        <div class="tab" data-target="good-oil">식용유</div>
+                        <div class="tab" data-target="good-exercise">운동</div>
+                        <div class="tab" data-target="good-bath">목욕</div>
+                        <div class="tab" data-target="good-color">색</div>
+                        <div class="tab" data-target="good-jewelry">보석</div>
+                        <div class="tab" data-target="good-porridge">죽</div>
+                        <div class="tab" data-target="good-etc">기타</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="good-grain">
+                        <div class="food-category">
+                            <div class="category-title">곡류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">찹쌀</div>
+                                <div class="food-item black-text">찹쌀흑미</div>
+                                <div class="food-item black-text">카무트(호라산밀)</div>
+                                <div class="food-item black-text">강낭콩(양대)</div>
+                                <div class="food-item black-text">고구마</div>
+                                <div class="food-item black-text">팥</div>
+                                <div class="food-item black-text">카사바(타피오카)</div>
+                                <div class="food-item black-text">감자</div>
+                                <div class="food-item black-text">미강</div>
+                                <div class="food-item black-text">찹쌀현미(소화장애시 금지)</div>
+                                <div class="food-item black-text">현미</div>
+                                <div class="food-item black-text">흑미</div>
+                                <div class="food-item black-text">홍국균미</div>
+                                <div class="food-item black-text">쌀</div>
+                                <div class="food-item black-text">찐쌀</div>
+                                <div class="food-item black-text">옥수수</div>
+                                <div class="food-item black-text">스(인디언감자)</div>
+                                <div class="food-item blue-text">검은쌀</div>
+                                <div class="food-item blue-text">율무</div>
+                                <div class="food-item blue-text">통밀</div>
+                                <div class="food-item blue-text">보리</div>
+                            </div>
+                            <div class="note-box">
+                                <div class="note-title">참고</div>
+                                <p>고구마, 팥, 감자, 찹쌀현미, 단호박 등은 입에서 물이 될 때까지 씹어야 함. 속쓰림과 신물오르는 것 조심. 위장기능 좋을 때만 섭취</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="good-vegetable">
+                        <div class="food-category">
+                            <div class="category-title">야채류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">서목태(쥐눈이콩)</div>
+                                <div class="food-item black-text">흑태(콩자반콩)</div>
+                                <div class="food-item black-text">이집트콩(병아리콩)</div>
+                                <div class="food-item black-text">우엉</div>
+                                <div class="food-item black-text">참깨</div>
+                                <div class="food-item black-text">아보카도</div>
+                                <div class="food-item black-text">땅콩호박</div>
+                                <div class="food-item black-text">단호박(호박은 안됨)</div>
+                                <div class="food-item black-text">파</div>
+                                <div class="food-item black-text">양파</div>
+                                <div class="food-item black-text">마늘</div>
+                                <div class="food-item black-text">마늘대</div>
+                                <div class="food-item black-text">고추</div>
+                                <div class="food-item black-text">생강</div>
+                                <div class="food-item black-text">흑생강</div>
+                                <div class="food-item black-text">겨자</div>
+                                <div class="food-item black-text">후추</div>
+                                <div class="food-item black-text">산초</div>
+                                <div class="food-item black-text">제피</div>
+                                <div class="food-item black-text">강황(카레)</div>
+                                <div class="food-item black-text">부추(정구지)</div>
+                                <div class="food-item black-text">갓</div>
+                                <div class="food-item black-text">명이나물</div>
+                                <div class="food-item black-text">냉이</div>
+                                <div class="food-item black-text">달래</div>
+                                <div class="food-item black-text">삼채</div>
+                                <div class="food-item black-text">릭</div>
+                                <div class="food-item black-text">창출나물</div>
+                                <div class="food-item black-text">피망</div>
+                                <div class="food-item black-text">파프리카</div>
+                                <div class="food-item black-text">고추냉이(와사비)</div>
+                                <div class="food-item black-text">염교(학교)</div>
+                                <div class="food-item black-text">청겨자잎</div>
+                                <div class="food-item black-text">적겨자잎</div>
+                                <div class="food-item black-text">가중나물(가죽)</div>
+                                <div class="food-item black-text">양하</div>
+                                <div class="food-item blue-text">무</div>
+                                <div class="food-item blue-text">브로콜리</div>
+                                <div class="food-item blue-text">시금치</div>
+                                <div class="food-item blue-text">연근</div>
+                                <div class="food-item blue-text">오이</div>
+                                <div class="food-item blue-text">우엉</div>
+                                <div class="food-item blue-text">호박</div>
+                                <div class="food-item blue-text">여주</div>
+                                <div class="food-item blue-text">고추잎</div>
+                                <div class="food-item blue-text">쑥</div>
+                                <div class="food-item blue-text">취나물</div>
+                                <div class="food-item blue-text">곰취</div>
+                                <div class="food-item blue-text">원추리나물</div>
+                                <div class="food-item blue-text">근대</div>
+                                <div class="food-item blue-text">섬초</div>
+                                <div class="food-item blue-text">포항초</div>
+                                <div class="food-item blue-text">고사리</div>
+                                <div class="food-item blue-text">양배추</div>
+                                <div class="food-item blue-text">방울양배추</div>
+                                <div class="food-item blue-text">컬리플라워</div>
+                                <div class="food-item blue-text">가지</div>
+                                <div class="food-item blue-text">고구마줄기</div>
+                                <div class="food-item blue-text">참나물</div>
+                                <div class="food-item blue-text">향초(고수)</div>
+                                <div class="food-item blue-text">곤드레</div>
+                                <div class="food-item blue-text">당귀나물</div>
+                                <div class="food-item blue-text">방아</div>
+                                <div class="food-item blue-text">깻잎</div>
+                                <div class="food-item blue-text">옥수수순</div>
+                                <div class="food-item blue-text">열무잎</div>
+                                <div class="food-item blue-text">무청</div>
+                                <div class="food-item blue-text">차조기(소엽)</div>
+                                <div class="food-item blue-text">세발나물(꽃나물)</div>
+                                <div class="food-item blue-text">부지갱이(섬쑥부쟁이)</div>
+                                <div class="food-item blue-text">아이스플란트(바라후)</div>
+                                <div class="food-item blue-text">콩나물</div>
+                            </div>
+                            <div class="note-box">
+                                <div class="note-title">참고</div>
+                                <p>속쓰림, 위통, 소화장애, 피부병, 설사 등이 있을 때는 고추, 고추장, 생강, 마늘, 후추, 산초, 제피, 강황, 부추, 갓, 겨자 등 매운 음식 섭취금지</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="good-meat">
+                        <div class="food-category">
+                            <div class="category-title">육류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">닭(닭발과 껍질은 안됨)</div>
+                                <div class="food-item black-text">개</div>
+                                <div class="food-item black-text">염소</div>
+                                <div class="food-item black-text">양</div>
+                                <div class="food-item black-text">노루</div>
+                                <div class="food-item black-text">사슴</div>
+                                <div class="food-item black-text">오골계</div>
+                                <div class="food-item black-text">꿩</div>
+                                <div class="food-item black-text">메추라기</div>
+                                <div class="food-item black-text">참새</div>
+                                <div class="food-item black-text">칠면조</div>
+                                <div class="food-item black-text">토끼</div>
+                                <div class="food-item black-text">선지</div>
+                                <div class="food-item black-text">계란노른자</div>
+                                <div class="food-item black-text">메추리알노른자</div>
+                                <div class="food-item black-text">염소유</div>
+                                <div class="food-item black-text">산양유</div>
+                                <div class="food-item black-text">산양분유</div>
+                                <div class="food-item black-text">염소유치즈</div>
+                                <div class="food-item black-text">산양유치즈</div>
+                                <div class="food-item black-text">소고기</div>
+                                <div class="food-item black-text">곰탕</div>
+                                <div class="food-item black-text">우유</div>
+                                <div class="food-item black-text">요구르트(체질에 맞는 재료가 들어간 것)</div>
+                                <div class="food-item black-text">소고기장조림</div>
+                                <div class="food-item black-text">소고기육포(아질산나트륨이 들어가지 않은 것)</div>
+                                <div class="food-item blue-text">돼지고기</div>
+                                <div class="food-item blue-text">닭고기</div>
+                                <div class="food-item blue-text">오리고기</div>
+                                <div class="food-item blue-text">거위고기</div>
+                                <div class="food-item blue-text">염소고기</div>
+                            </div>
+                            <div class="note-box">
+                                <div class="note-title">참고</div>
+                                <p>암, 피부병, 자가면역질환, 류마티스, 통풍, 간질환, 심혈관계질환, 비뇨생식기질환, 장실환, 위장장애, 소화불량, 복통, 설사 등이 있을 때는 모든 육류와 유제품을 금해야 함</p>
+                                <p>육류를 섭취할 경우 지방질을 제거하고 섭취해야 하며 소화력이 약할 때는 삼계탕, 백숙 등의 국물만 섭취해야 함(기름기 제거)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="good-fish">
+                        <div class="food-category">
+                            <div class="category-title">생선류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">멸치</div>
+                                <div class="food-item black-text">뱅어</div>
+                                <div class="food-item black-text">미꾸라지</div>
+                                <div class="food-item black-text">가물치</div>
+                                <div class="food-item black-text">메기(동사리)</div>
+                                <div class="food-item black-text">붕어</div>
+                                <div class="food-item black-text">잉어</div>
+                                <div class="food-item black-text">향어</div>
+                                <div class="food-item black-text">각시붕어</div>
+                                <div class="food-item black-text">은어</div>
+                                <div class="food-item black-text">미노</div>
+                                <div class="food-item blue-text">송어</div>
+                                <div class="food-item blue-text">황어(숭어)</div>
+                                <div class="food-item blue-text">조기</div>
+                                <div class="food-item blue-text">삼치</div>
+                                <div class="food-item blue-text">방어</div>
+                                <div class="food-item blue-text">갈치</div>
+                                <div class="food-item blue-text">도미</div>
+                                <div class="food-item blue-text">대구</div>
+                                <div class="food-item blue-text">연어</div>
+                                <div class="food-item blue-text">복어</div>
+                                <div class="food-item blue-text">민어</div>
+                                <div class="food-item blue-text">꼼치(물텀벙)</div>
+                                <div class="food-item blue-text">곤들매기</div>
+                                <div class="food-item blue-text">장어</div>
+                                <div class="food-item blue-text">뱀장어</div>
+                                <div class="food-item blue-text">꾹저구</div>
+                                <div class="food-item blue-text">정어리</div>
+                                <div class="food-item blue-text">고등어</div>
+                                <div class="food-item blue-text">북어포</div>
+                                <div class="food-item blue-text">농어</div>
+                                <div class="food-item blue-text">명태</div>
+                                <div class="food-item blue-text">동태</div>
+                                <div class="food-item blue-text">북어</div>
+                                <div class="food-item blue-text">가자미</div>
+                                <div class="food-item blue-text">광어</div>
+                                <div class="food-item blue-text">홍어</div>
+                                <div class="food-item blue-text">상어</div>
+                                <div class="food-item blue-text">가오리</div>
+                                <div class="food-item blue-text">아귀</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="good-seafood">
+                        <div class="food-category">
+                            <div class="category-title">해조류/해물류</div>
+                            <div class="food-list">
+                                <div class="food-item blue-text">미역</div>
+                                <div class="food-item blue-text">다시마</div>
+                                <div class="food-item blue-text">김</div>
+                                <div class="food-item blue-text">오징어</div>
+                                <div class="food-item blue-text">한치</div>
+                                <div class="food-item blue-text">문어</div>
+                                <div class="food-item blue-text">갑오징어</div>
+                                <div class="food-item blue-text">낙지</div>
+                                <div class="food-item blue-text">쭈꾸미</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="good-shellfish">
+                        <div class="food-category">
+                            <div class="category-title">패류/고동류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">굴</div>
+                                <div class="food-item black-text">전복</div>
+                                <div class="food-item black-text">홍합</div>
+                                <div class="food-item black-text">가리비</div>
+                                <div class="food-item black-text">새우</div>
+                                <div class="food-item black-text">게</div>
+                                <div class="food-item blue-text">바닷가재</div>
+                                <div class="food-item blue-text">닭새우</div>
+                                <div class="food-item blue-text">킹크랩</div>
+                                <div class="food-item blue-text">랍스터</div>
+                                <div class="food-item blue-text">대게</div>
+                                <div class="food-item blue-text">홍게</div>
+                                <div class="food-item blue-text">꽃게</div>
+                                <div class="food-item blue-text">영덕게</div>
+                                <div class="food-item blue-text">대합</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="good-fruit">
+                        <div class="food-category">
+                            <div class="category-title">과일류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">석류</div>
+                                <div class="food-item black-text">무화과</div>
+                                <div class="food-item black-text">망고</div>
+                                <div class="food-item black-text">코코넛</div>
+                                <div class="food-item black-text">감</div>
+                                <div class="food-item black-text">곶감</div>
+                                <div class="food-item black-text">대추</div>
+                                <div class="food-item black-text">복분자</div>
+                                <div class="food-item black-text">아로니아</div>
+                                <div class="food-item black-text">블루베리</div>
+                                <div class="food-item black-text">구아바</div>
+                                <div class="food-item black-text">체리</div>
+                                <div class="food-item black-text">파파야</div>
+                                <div class="food-item black-text">망고스틴</div>
+                                <div class="food-item black-text">용과</div>
+                                <div class="food-item black-text">리치</div>
+                                <div class="food-item black-text">패션프루츠</div>
+                                <div class="food-item black-text">구기자</div>
+                                <div class="food-item black-text">산수유</div>
+                                <div class="food-item black-text">오미자</div>
+                                <div class="food-item black-text">머루</div>
+                                <div class="food-item black-text">다래</div>
+                                <div class="food-item black-text">다래</div>
+                                <div class="food-item black-text">다래가루</div>
+                                <div class="food-item black-text">마가목열매</div>
+                                <div class="food-item black-text">매실</div>
+                                <div class="food-item black-text">앵두</div>
+                                <div class="food-item black-text">버찌</div>
+                                <div class="food-item black-text">모과</div>
+                                <div class="food-item black-text">귤</div>
+                                <div class="food-item black-text">탱자</div>
+                                <div class="food-item black-text">자몽</div>
+                                <div class="food-item black-text">오렌지</div>
+                                <div class="food-item black-text">레몬</div>
+                                <div class="food-item black-text">라임</div>
+                                <div class="food-item black-text">포도</div>
+                                <div class="food-item blue-text">배</div>
+                                <div class="food-item blue-text">수박</div>
+                                <div class="food-item blue-text">참외</div>
+                                <div class="food-item blue-text">딸기</div>
+                                <div class="food-item blue-text">바나나</div>
+                                <div class="food-item blue-text">키위</div>
+                                <div class="food-item blue-text">라즈베리</div>
+                                <div class="food-item blue-text">블랙베리</div>
+                                <div class="food-item blue-text">그린키위</div>
+                                <div class="food-item blue-text">골든키위</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="good-nuts">
+                        <div class="food-category">
+                            <div class="category-title">견과류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">아몬드</div>
+                                <div class="food-item black-text">캐쉬넛(인도땅콩)</div>
+                                <div class="food-item black-text">타이거넛</div>
+                                <div class="food-item black-text">사차인치</div>
+                                <div class="food-item black-text">피스타치오</div>
+                                <div class="food-item black-text">마카다미아</div>
+                                <div class="food-item black-text">피칸</div>
+                                <div class="food-item black-text">땅콩</div>
+                                <div class="food-item black-text">브라질넛</div>
+                                <div class="food-item black-text">대추야자씨앗</div>
+                                <div class="food-item black-text">코코넛</div>
+                                <div class="food-item black-text">올리브</div>
+                                <div class="food-item blue-text">호두</div>
+                                <div class="food-item blue-text">잣</div>
+                                <div class="food-item blue-text">은행</div>
+                                <div class="food-item blue-text">밤</div>
+                                <div class="food-item blue-text">헤이즐넛</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="good-kimchi">
+                        <div class="food-category">
+                            <div class="category-title">김치류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">파김치</div>
+                                <div class="food-item black-text">부추김치</div>
+                                <div class="food-item black-text">갓김치</div>
+                                <div class="food-item blue-text">고추잎김치</div>
+                                <div class="food-item blue-text">쑥갓김치</div>
+                                <div class="food-item blue-text">곰취김치</div>
+                                <div class="food-item blue-text">취나물김치</div>
+                                <div class="food-item blue-text">열무김치</div>
+                                <div class="food-item blue-text">무청김치</div>
+                                <div class="food-item blue-text">파프리카김치</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="good-jjot">
+                        <div class="food-category">
+                            <div class="category-title">젓갈</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">조기젓</div>
+                                <div class="food-item black-text">소라젓</div>
+                                <div class="food-item black-text">토하젓</div>
+                                <div class="food-item black-text">굴젓</div>
+                                <div class="food-item blue-text">명란젓</div>
+                                <div class="food-item blue-text">창난젓</div>
+                                <div class="food-item blue-text">오징어젓</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="good-drink">
+                        <div class="food-category">
+                            <div class="category-title">차</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">수정과</div>
+                                <div class="food-item black-text">식혜</div>
+                                <div class="food-item black-text">유자차</div>
+                                <div class="food-item black-text">모과차</div>
+                                <div class="food-item black-text">생강차</div>
+                                <div class="food-item black-text">계피차</div>
+                                <div class="food-item blue-text">헛개나무차</div>
+                                <div class="food-item blue-text">녹차</div>
+                                <div class="food-item blue-text">보리차</div>
+                                <div class="food-item blue-text">옥수수차</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="good-oil">
+                        <div class="food-category">
+                            <div class="category-title">식용유</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">올리브유</div>
+                                <div class="food-item black-text">참기름</div>
+                                <div class="food-item black-text">들기름</div>
+                                <div class="food-item black-text">홍화유</div>
+                                <div class="food-item black-text">해바라기유</div>
+                                <div class="food-item black-text">아마씨유</div>
+                                <div class="food-item black-text">야자유</div>
+                                <div class="food-item blue-text">포도씨유</div>
+                                <div class="food-item blue-text">카놀라유</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="good-exercise">
+                        <div class="food-category">
+                            <div class="category-title">운동</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">수영</div>
+                                <div class="food-item black-text">물속걷기</div>
+                                <div class="food-item black-text">냉수마찰</div>
+                                <div class="food-item black-text">아쿠아로빅</div>
+                                <div class="food-item black-text">수구</div>
+                                <div class="food-item black-text">사우나</div>
+                                <div class="food-item black-text">반신욕</div>
+                                <div class="food-item black-text">족욕</div>
+                                <div class="food-item black-text">냉온욕</div>
+                            </div>
+                            <div class="note-box">
+                                <div class="note-title">참고</div>
+                                <p>운동은 낮 12시 이전, 운동 중 땀을 너무 많이 흘리지 말 것. 물 많이 마시지 않기</p>
+                                <p>한증탕, 땀사우나, 찜질방 등이 있으면 수영을 하지 금지</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="good-bath">
+                        <div class="food-category">
+                            <div class="category-title">목욕</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">냉수목욕(찬물로)</div>
+                                <div class="food-item black-text">냉수마찰</div>
+                                <div class="food-item blue-text">거품목욕</div>
+                                <div class="food-item blue-text">약품목욕</div>
+                            </div>
+                            <div class="note-box">
+                                <div class="note-title">참고</div>
+                                <p>거품욕은 하루에 1-2회 하고 잠들기 전에는 수시로 하는 것이 좋음</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="good-color">
+                        <div class="food-category">
+                            <div class="category-title">색</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">주황색</div>
+                                <div class="food-item black-text">분홍색</div>
+                                <div class="food-item black-text">핑크색</div>
+                                <div class="food-item black-text">노란색</div>
+                                <div class="food-item black-text">계통</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="good-jewelry">
+                        <div class="food-category">
+                            <div class="category-title">보석</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">다이아몬드</div>
+                                <div class="food-item black-text">팔찌</div>
+                                <div class="food-item black-text">담황색</div>
+                                <div class="food-item black-text">호박석</div>
+                                <div class="food-item black-text">제백석</div>
+                                <div class="food-item black-text">계피자석</div>
+                                <div class="food-item black-text">황석</div>
+                                <div class="food-item black-text">참새옥</div>
+                                <div class="food-item black-text">황철광</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="good-porridge">
+                        <div class="food-category">
+                            <div class="category-title">죽</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">당호박죽</div>
+                                <div class="food-item black-text">팥죽</div>
+                                <div class="food-item black-text">단죽</div>
+                                <div class="food-item blue-text">강낭콩죽</div>
+                                <div class="food-item blue-text">아몬드죽</div>
+                                <div class="food-item blue-text">고구마죽</div>
+                            </div>
+                            <div class="note-box">
+                                <div class="note-title">참고</div>
+                                <p>죽은 맑게 끓여서 마시듯이 함</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="good-etc">
+                        <div class="food-category">
+                            <div class="category-title">기타</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">유자</div>
+                                <div class="food-item blue-text">식초</div>
+                                <div class="food-item blue-text">유기된장</div>
+                                <div class="food-item blue-text">된장</div>
+                                <div class="food-item blue-text">여주</div>
+                                <div class="food-item blue-text">인삼</div>
+                                <div class="food-item blue-text">홍삼</div>
+                                <div class="food-item blue-text">상심자</div>
+                                <div class="food-item blue-text">복령</div>
+                                <div class="food-item blue-text">복신</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 해로운 것 섹션 -->
+            <div class="food-section">
+                <div class="section-header bad-header">
+                    해로운 것
+                </div>
+                <div class="content-container">
+                    <div class="tabs bad-tabs">
+                        <div class="tab active" data-target="bad-grain">곡류</div>
+                        <div class="tab" data-target="bad-vegetable">야채류</div>
+                        <div class="tab" data-target="bad-meat">육류</div>
+                        <div class="tab" data-target="bad-fish">생선류</div>
+                        <div class="tab" data-target="bad-seafood">해조류/해물류</div>
+                        <div class="tab" data-target="bad-shellfish">패류/고동류</div>
+                        <div class="tab" data-target="bad-fruit">과일류</div>
+                        <div class="tab" data-target="bad-nuts">견과류</div>
+                        <div class="tab" data-target="bad-drink">음료</div>
+                        <div class="tab" data-target="bad-etc">기타</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="bad-grain">
+                        <div class="food-category">
+                            <div class="category-title">곡류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">쌀</div>
+                                <div class="food-item black-text">밀가루</div>
+                                <div class="food-item blue-text">메밀</div>
+                                <div class="food-item blue-text">현미</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="bad-vegetable">
+                        <div class="food-category">
+                            <div class="category-title">야채류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">고추</div>
+                                <div class="food-item black-text">생강</div>
+                                <div class="food-item black-text">마늘</div>
+                                <div class="food-item black-text">파</div>
+                                <div class="food-item blue-text">당근</div>
+                                <div class="food-item blue-text">토마토</div>
+                                <div class="food-item blue-text">가죽나물</div>
+                                <div class="food-item blue-text">머위</div>
+                                <div class="food-item blue-text">쑥</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="bad-meat">
+                        <div class="food-category">
+                            <div class="category-title">육류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">소고기</div>
+                                <div class="food-item blue-text">말고기</div>
+                                <div class="food-item blue-text">양고기</div>
+                                <div class="food-item blue-text">사슴고기</div>
+                                <div class="food-item black-text">돼지고기</div>
+                                <div class="food-item black-text">산양</div>
+                                <div class="food-item black-text">산토끼</div>
+                                <div class="food-item black-text">삼겹살</div>
+                                <div class="food-item black-text">제육</div>
+                                <div class="food-item black-text">돼지목살</div>
+                                <div class="food-item black-text">닭고기</div>
+                                <div class="food-item black-text">오리고기</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="bad-fish">
+                        <div class="food-category">
+                            <div class="category-title">생선류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">장어</div>
+                                <div class="food-item black-text">고등어</div>
+                                <div class="food-item black-text">참치</div>
+                                <div class="food-item blue-text">광어</div>
+                                <div class="food-item blue-text">명태</div>
+                                <div class="food-item blue-text">갈치</div>
+                                <div class="food-item blue-text">대구</div>
+                                <div class="food-item blue-text">연어</div>
+                                <div class="food-item black-text">복어</div>
+                                <div class="food-item black-text">참치</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="bad-seafood">
+                        <div class="food-category">
+                            <div class="category-title">해조류/해물류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">미역</div>
+                                <div class="food-item black-text">다시마</div>
+                                <div class="food-item black-text">톳</div>
+                                <div class="food-item black-text">멍게</div>
+                                <div class="food-item black-text">해삼자루</div>
+                                <div class="food-item black-text">해삼</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="bad-shellfish">
+                        <div class="food-category">
+                            <div class="category-title">패류/고동류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">조개류</div>
+                                <div class="food-item black-text">굴</div>
+                                <div class="food-item black-text">홍합</div>
+                                <div class="food-item black-text">바지락</div>
+                                <div class="food-item black-text">대합</div>
+                                <div class="food-item black-text">소라</div>
+                                <div class="food-item black-text">꿀</div>
+                                <div class="food-item black-text">우렁</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="bad-fruit">
+                        <div class="food-category">
+                            <div class="category-title">과일류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">사과</div>
+                                <div class="food-item black-text">복숭아</div>
+                                <div class="food-item blue-text">살구</div>
+                                <div class="food-item blue-text">참외</div>
+                                <div class="food-item blue-text">딸기</div>
+                                <div class="food-item blue-text">자두</div>
+                                <div class="food-item blue-text">레몬</div>
+                                <div class="food-item blue-text">오렌지</div>
+                                <div class="food-item blue-text">자몽</div>
+                                <div class="food-item black-text">망고</div>
+                                <div class="food-item black-text">청포도</div>
+                                <div class="food-item black-text">자몽</div>
+                                <div class="food-item black-text">오렌지</div>
+                                <div class="food-item black-text">천도복숭아</div>
+                                <div class="food-item black-text">토란</div>
+                                <div class="food-item black-text">판식고</div>
+                                <div class="food-item black-text">올리브</div>
+                                <div class="food-item black-text">파인애플</div>
+                                <div class="food-item black-text">한라봉</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="bad-nuts">
+                        <div class="food-category">
+                            <div class="category-title">견과류</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">은행</div>
+                                <div class="food-item black-text">캐슈넛</div>
+                                <div class="food-item blue-text">해바라기씨</div>
+                                <div class="food-item blue-text">들깨</div>
+                                <div class="food-item black-text">땅콩</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="bad-drink">
+                        <div class="food-category">
+                            <div class="category-title">음료</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">커피</div>
+                                <div class="food-item black-text">홍차</div>
+                                <div class="food-item black-text">알코올류</div>
+                                <div class="food-item blue-text">탄산음료</div>
+                                <div class="food-item blue-text">과일주스</div>
+                                <div class="food-item black-text">뽕잎차</div>
+                                <div class="food-item black-text">결명자차</div>
+                                <div class="food-item black-text">녹차</div>
+                                <div class="food-item black-text">유자차</div>
+                                <div class="food-item black-text">매실차</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="bad-etc">
+                        <div class="food-category">
+                            <div class="category-title">기타</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">설탕</div>
+                                <div class="food-item black-text">인공감미료</div>
+                                <div class="food-item blue-text">고춧가루</div>
+                                <div class="food-item blue-text">후추</div>
+                                <div class="food-item blue-text">겨자</div>
+                                <div class="food-item blue-text">카레</div>
+                                <div class="food-item black-text">꿀</div>
+                                <div class="food-item black-text">매실청</div>
+                                <div class="food-item black-text">새우젓</div>
+                                <div class="food-item black-text">조개젓</div>
+                                <div class="food-item black-text">아니스</div>
+                                <div class="food-item black-text">가츠오부시</div>
+                                <div class="food-item black-text">송화</div>
+                                <div class="food-item black-text">밀가루</div>
+                                <div class="food-item black-text">검은깨</div>
+                                <div class="food-item black-text">들깨가루</div>
+                                <div class="food-item black-text">무말랭이</div>
+                                <div class="food-item black-text">마늘</div>
+                                <div class="food-item black-text">생강</div>
+                                <div class="food-item black-text">고춧가루</div>
+                                <div class="food-item black-text">양파가루</div>
+                                <div class="food-item black-text">파프리카가루</div>
+                            </div>
+                        </div>
+                        
+                        <div class="food-category">
+                            <div class="category-title">제한 음식</div>
+                            <div class="food-list">
+                                <div class="food-item black-text">꿩</div>
+                                <div class="food-item black-text">타조</div>
+                                <div class="food-item black-text">산양</div>
+                                <div class="food-item black-text">야생토끼</div>
+                                <div class="food-item black-text">쌍화탕</div>
+                                <div class="food-item black-text">공복에 커피</div>
+                                <div class="food-item black-text">녹용</div>
+                                <div class="food-item black-text">경옥고</div>
+                                <div class="food-item black-text">육포</div>
+                                <div class="food-item black-text">육회</div>
+                                <div class="food-item black-text">중탕</div>
+                                <div class="food-item black-text">설렁탕</div>
+                                <div class="food-item black-text">꼬리곰탕</div>
+                                <div class="food-item black-text">곰탕</div>
+                                <div class="food-item black-text">갈비탕</div>
+                                <div class="food-item black-text">대구탕</div>
+                                <div class="food-item black-text">매운탕</div>
+                                <div class="food-item black-text">생태탕</div>
+                                <div class="food-item black-text">동지팥죽</div>
+                                <div class="food-item black-text">각종팥죽</div>
+                                <div class="food-item black-text">계란국</div>
+                                <div class="food-item black-text">두릅나물</div>
+                                <div class="food-item black-text">표고버섯</div>
+                                <div class="food-item black-text">송이버섯</div>
+                                <div class="food-item black-text">팽이버섯</div>
+                                <div class="food-item black-text">새송이버섯</div>
+                                <div class="food-item black-text">상황버섯</div>
+                                <div class="food-item black-text">양송이버섯</div>
+                                <div class="food-item black-text">맛버섯</div>
+                                <div class="food-item black-text">달걀부침</div>
+                                <div class="food-item black-text">맛살</div>
+                                <div class="food-item black-text">유부</div>
+                                <div class="food-item black-text">곤약</div>
+                                <div class="food-item black-text">마른북어</div>
+                                <div class="food-item black-text">해물탕</div>
+                                <div class="food-item black-text">두부</div>
+                                <div class="food-item black-text">녹두</div>
+                                <div class="food-item black-text">콩나물국</div>
+                                <div class="food-item black-text">청국장</div>
+                                <div class="food-item black-text">도라지</div>
+                                <div class="food-item black-text">연근</div>
+                                <div class="food-item black-text">젤리</div>
+                                <div class="food-item black-text">뱀</div>
+                                <div class="food-item black-text">벌꿀</div>
+                                <div class="food-item black-text">알로에</div>
+                                <div class="food-item black-text">흑염소</div>
+                                <div class="food-item black-text">죽순</div>
+                                <div class="food-item black-text">파전</div>
+                                <div class="food-item black-text">감자전</div>
+                                <div class="food-item black-text">당면</div>
+                                <div class="food-item black-text">튀김</div>
+                                <div class="food-item black-text">밀면</div>
+                                <div class="food-item black-text">짬뽕</div>
+                                <div class="food-item black-text">탕수육</div>
+                                <div class="food-item black-text">깍두기</div>
+                                <div class="food-item black-text">열무김치</div>
+                            </div>
+                        </div>
+                        <div class="category-title">식용유</div>
+                        <div class="food-list">
+                            <div class="food-item black-text">올리브유</div>
+                            <div class="food-item black-text">참기름</div>
+                            <div class="food-item black-text">들기름</div>
+                            <div class="food-item black-text">홍화유</div>
+                            <div class="food-item black-text">해바라기유</div>
+                            <div class="food-item black-text">아마씨유</div>
+                            <div class="food-item black-text">야자유</div>
+                            <div class="food-item blue-text">포도씨유</div>
+                            <div class="food-item blue-text">카놀라유</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="good-exercise">
+                    <div class="food-category">
+                        <div class="category-title">운동</div>
+                        <div class="food-list">
+                            <div class="food-item black-text">수영</div>
+                            <div class="food-item black-text">물속걷기</div>
+                            <div class="food-item black-text">냉수마찰</div>
+                            <div class="food-item black-text">아쿠아로빅</div>
+                            <div class="food-item black-text">수구</div>
+                            <div class="food-item black-text">사우나</div>
+                            <div class="food-item black-text">반신욕</div>
+                            <div class="food-item black-text">족욕</div>
+                            <div class="food-item black-text">냉온욕</div>
+                        </div>
+                        <div class="note-box">
+                            <div class="note-title">참고</div>
+                            <p>운동은 낮 12시 이전, 운동 중 땀을 너무 많이 흘리지 말 것. 물 많이 마시지 않기</p>
+                            <p>한증탕, 땀사우나, 찜질방 등이 있으면 수영을 하지 금지</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="good-bath">
+                    <div class="food-category">
+                        <div class="category-title">목욕</div>
+                        <div class="food-list">
+                            <div class="food-item black-text">냉수목욕(찬물로)</div>
+                            <div class="food-item black-text">냉수마찰</div>
+                            <div class="food-item blue-text">거품목욕</div>
+                            <div class="food-item blue-text">약품목욕</div>
+                        </div>
+                        <div class="note-box">
+                            <div class="note-title">참고</div>
+                            <p>거품욕은 하루에 1-2회 하고 잠들기 전에는 수시로 하는 것이 좋음</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="good-color">
+                    <div class="food-category">
+                        <div class="category-title">색</div>
+                        <div class="food-list">
+                            <div class="food-item black-text">주황색</div>
+                            <div class="food-item black-text">분홍색</div>
+                            <div class="food-item black-text">핑크색</div>
+                            <div class="food-item black-text">노란색</div>
+                            <div class="food-item black-text">계통</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="good-jewelry">
+                    <div class="food-category">
+                        <div class="category-title">보석</div>
+                        <div class="food-list">
+                            <div class="food-item black-text">다이아몬드</div>
+                            <div class="food-item black-text">팔찌</div>
+                            <div class="food-item black-text">담황색</div>
+                            <div class="food-item black-text">호박석</div>
+                            <div class="food-item black-text">제백석</div>
+                            <div class="food-item black-text">계피자석</div>
+                            <div class="food-item black-text">황석</div>
+                            <div class="food-item black-text">참새옥</div>
+                            <div class="food-item black-text">황철광</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="good-porridge">
+                    <div class="food-category">
+                        <div class="category-title">죽</div>
+                        <div class="food-list">
+                            <div class="food-item black-text">당호박죽</div>
+                            <div class="food-item black-text">팥죽</div>
+                            <div class="food-item black-text">단죽</div>
+                            <div class="food-item blue-text">강낭콩죽</div>
+                            <div class="food-item blue-text">아몬드죽</div>
+                            <div class="food-item blue-text">고구마죽</div>
+                        </div>
+                        <div class="note-box">
+                            <div class="note-title">참고</div>
+                            <p>죽은 맑게 끓여서 마시듯이 함</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="good-etc">
+                    <div class="food-category">
+                        <div class="category-title">기타</div>
+                        <div class="food-list">
+                            <div class="food-item black-text">유자</div>
+                            <div class="food-item blue-text">식초</div>
+                            <div class="food-item blue-text">유기된장</div>
+                            <div class="food-item blue-text">된장</div>
+                            <div class="food-item blue-text">여주</div>
+                            <div class="food-item blue-text">인삼</div>
+                            <div class="food-item blue-text">홍삼</div>
+                            <div class="food-item blue-text">상심자</div>
+                            <div class="food-item blue-text">복령</div>
+                            <div class="food-item blue-text">복신</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="food-section">
+                <div class="section-header">
+                    특별 지침
+                </div>
+                <div class="content-container">
+                    <ol>
+                        <li>우유와 요구르트는 체질에 안 맞는 성분이 섞이지 않았을 때만 섭취</li>
+                        <li>기름진 식품, 튀김류, 생선류 피하기</li>
+                        <li>6번 체질은 수분섭취를 줄여야 하고, 물은 500ml 이하로 제한</li>
+                        <li>당뇨가 있는 경우에도 위 식단을 따라야 함</li>
+                        <li>다른 체질과는 달리 서양 의학적 소양 개념과 일치하므로 매운 음식 피하기</li>
+                        <li>글루텐이 포함된 음식은 소화불량 유발할 수 있음</li>
+                        <li>수면 전 식사는 체질에 맞는 음식으로만 하고 18시 이후 식사는 피하기</li>
+                        <li>식사 중간에 물 마시는 것은 체질에 맞지 않음</li>
+                        <li>밀가루 제품(빵, 쿠키, 케이크, 도넛 등) 제한</li>
+                        <li>인스턴트 음식, 과자류, 빙과류, 치킨, 피자 제한</li>
+                        <li>냉장고에 넣었던 음식물 바로 먹지 말고 상온에 두었다가 먹기</li>
+                        <li>눈(汽)이 갑자기 들어가는 것은 좋지 않으므로 냉장고 문 자주 열지 말기</li>
+                        <li>에어컨 직접 쏘이지 말고 선풍기 돌리기 피하기</li>
+                        <li>설사가 나기 쉬우므로 체질에 안 맞는 음식은 피하기</li>
+                        <li>밀가루 음식 많이 먹지 말기</li>
+                        <li>돼지고기, 닭고기, 오리고기, 양고기, 소고기, 염소고기 제한</li>
+                        <li>기름진 음식과 튀긴 음식 피하기</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 체질별 음식 가이드 | 이 정보는 참고용으로만 사용하세요. 전문가와 상담하십시오.</p>
+            <p>가이드 번호: 2305</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 탭 전환 기능
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const tabContainer = this.closest('.tabs');
+                    const contentContainer = this.closest('.content-container');
+                    
+                    // 같은 탭 컨테이너 내의 모든 탭에서 active 클래스 제거
+                    tabContainer.querySelectorAll('.tab').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    
+                    // 클릭된 탭에 active 클래스 추가
+                    this.classList.add('active');
+                    
+                    // 모든 탭 콘텐츠를 숨김
+                    contentContainer.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // 해당 탭 콘텐츠만 표시
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,11 +1,30 @@
+:root {
+    --primary-color: #4a5e8c;
+    --secondary-color: #8c4a5e;
+    --good-bg: #e8f5e9;
+    --bad-bg: #ffebee;
+    --good-border: #66bb6a;
+    --bad-border: #e57373;
+    --black-text: #212121;
+    --blue-text: #0d47a1;
+    --tab-active: #4a5e8c;
+    --tab-inactive: #e0e0e0;
+    --header-bg: #f5f5f5;
+    --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+}
+
 body {
     background-color: #f8f9fa;
     color: #333;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+    line-height: 1.6;
 }
 
 .container {
-    max-width: 768px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .search-container {
@@ -14,92 +33,165 @@ body {
     z-index: 1000;
     background-color: #f8f9fa;
     padding: 10px 0;
-}
-
-.constitution-buttons .btn {
-    padding: 15px;
-    border-width: 2px;
-    transition: all 0.3s ease;
-}
-
-.constitution-name {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 4px;
-}
-
-.constitution-desc {
-    font-size: 0.85rem;
-    opacity: 0.8;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .card {
-    border-radius: 15px;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
     border: none;
+    overflow: hidden;
+}
+
+.card-header {
+    border-bottom: none;
+    padding: 15px 20px;
+}
+
+.bg-success {
+    background-color: var(--good-bg) !important;
+    color: #2e7d32 !important;
+    border-bottom: 3px solid var(--good-border);
+}
+
+.bg-danger {
+    background-color: var(--bad-bg) !important;
+    color: #c62828 !important;
+    border-bottom: 3px solid var(--bad-border);
 }
 
 .list-group-item {
     border-left: none;
     border-right: none;
-    padding: 12px 20px;
-    transition: background-color 0.2s ease;
+    padding: 8px 12px;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    border-radius: 5px;
+    margin: 5px 0;
+    background-color: #f9f9f9;
 }
 
 .list-group-item:hover {
-    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
 }
 
-.list-group-item:first-child {
+.list-group-item.black-text {
+    color: var(--black-text);
+    border-left: 3px solid var(--black-text);
+}
+
+.list-group-item.blue-text {
+    color: var(--blue-text);
+    border-left: 3px solid var(--blue-text);
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f5f5f5;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+}
+
+.nav-tabs .nav-link {
+    padding: 12px 20px;
+    color: #666;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    background-color: var(--tab-inactive);
+    transition: var(--transition);
+    border: none;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #f0f0f0;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: var(--tab-active);
+    color: white;
+    font-weight: bold;
+}
+
+.tab-content {
+    max-height: 600px;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #dee2e6;
     border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
 }
 
-.list-group-item:last-child {
-    border-bottom: none;
+/* 스크롤바 스타일링 */
+.tab-content::-webkit-scrollbar {
+    width: 8px;
 }
 
-.text-success {
-    color: #28a745 !important;
+.tab-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
 }
 
-.text-danger {
-    color: #dc3545 !important;
+.tab-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
 }
 
-.input-group-text {
-    border-left: none;
+.tab-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
-#searchInput {
-    border-right: none;
+/* 참고사항 스타일 */
+.note-box {
+    background-color: #fff3e0;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    border-left: 4px solid #ffb74d;
 }
 
-#searchInput:focus {
-    box-shadow: none;
+.note-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #e65100;
 }
 
-#searchInput:focus + .input-group-text {
-    border-color: #86b7fe;
+/* 특별 지침 스타일 */
+.bg-info {
+    background-color: var(--primary-color) !important;
 }
 
-@media (max-width: 576px) {
+ol li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
     h1 {
         font-size: 1.8rem;
     }
     
-    h4 {
-        font-size: 1.2rem;
+    .nav-tabs {
+        flex-wrap: wrap;
     }
     
-    .constitution-buttons .btn {
-        padding: 10px;
+    .nav-tabs .nav-link {
+        flex-grow: 1;
+        text-align: center;
     }
     
-    .constitution-name {
-        font-size: 1rem;
-    }
-    
-    .constitution-desc {
-        font-size: 0.75rem;
+    .list-group-item {
+        font-size: 0.85rem;
     }
 } 

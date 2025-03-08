@@ -1,13 +1,34 @@
 // DOM 요소
 const searchInput = document.getElementById('searchInput');
-const goodFoodList = document.getElementById('goodFoodList');
-const badFoodList = document.getElementById('badFoodList');
 
 // 카테고리 정렬 순서
 const categoryOrder = [
-    "곡류", "야채류", "육류", "생선류", "해조류", "패류", "연체동물",
-    "건과류", "견과류", "과일류", "김치", "식용유", "음료", "차", "비선류"
+    "곡류", "야채류", "육류", "생선류", "해조류/해물류", "패류/고동류", "과일류", "견과류", 
+    "김치류", "젓갈", "차", "식용유", "운동", "목욕", "색", "보석", "죽", "기타"
 ];
+
+// 카테고리 매핑 (탭 ID용)
+const categoryMapping = {
+    "곡류": "grain",
+    "야채류": "vegetable",
+    "육류": "meat",
+    "생선류": "fish",
+    "해조류/해물류": "seafood",
+    "패류/고동류": "shellfish",
+    "과일류": "fruit",
+    "견과류": "nuts",
+    "김치류": "kimchi",
+    "젓갈": "jjot",
+    "차": "drink",
+    "식용유": "oil",
+    "운동": "exercise",
+    "목욕": "bath",
+    "색": "color",
+    "보석": "jewelry",
+    "죽": "porridge",
+    "기타": "etc",
+    "음료": "drink"
+};
 
 // 카테고리 정렬 함수
 function sortCategories(categories) {
@@ -18,47 +39,48 @@ function sortCategories(categories) {
     });
 }
 
+// 음식 색상 결정 함수
+function getFoodColorClass(food, index) {
+    return index % 2 === 0 ? 'black-text' : 'blue-text';
+}
+
+// 카테고리별 음식 표시 함수
+function displayFoodsByCategory(type, category) {
+    const foods = foodData[type][category] || [];
+    const tabId = categoryMapping[category];
+    const containerId = `${type === "이로운 것" ? "good" : "bad"}Food${tabId}`;
+    const container = document.getElementById(containerId);
+    
+    if (!container) return;
+    
+    if (foods.length > 0) {
+        const html = `
+            <div class="list-group">
+                ${foods.map((food, index) => `
+                    <div class="list-group-item ${getFoodColorClass(food, index)}">${food}</div>
+                `).join('')}
+            </div>
+        `;
+        container.innerHTML = html;
+    } else {
+        container.innerHTML = '<p class="text-center text-muted">해당 분류의 음식이 없습니다.</p>';
+    }
+}
+
 // 초기 음식 목록 표시
 function displayFoodList() {
     // 이로운 음식 표시
-    let goodHtml = '';
-    const sortedGoodCategories = sortCategories(foodData["이로운 것"]);
-    
-    for (const [category, foods] of sortedGoodCategories) {
-        if (foods.length > 0) {
-            goodHtml += `
-                <div class="mb-4">
-                    <h4 class="text-success mb-3">${category}</h4>
-                    <div class="list-group">
-                        ${foods.map(food => `
-                            <div class="list-group-item">${food}</div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-        }
-    }
-    goodFoodList.innerHTML = goodHtml;
+    categoryOrder.forEach(category => {
+        displayFoodsByCategory("이로운 것", category);
+    });
 
-    // 해로운 음식 표시
-    let badHtml = '';
-    const sortedBadCategories = sortCategories(foodData["해로운 것"]);
-    
-    for (const [category, foods] of sortedBadCategories) {
-        if (foods.length > 0) {
-            badHtml += `
-                <div class="mb-4">
-                    <h4 class="text-danger mb-3">${category}</h4>
-                    <div class="list-group">
-                        ${foods.map(food => `
-                            <div class="list-group-item">${food}</div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
+    // 해로운 음식 표시 (운동, 목욕, 색, 보석 제외)
+    const excludedCategories = ["운동", "목욕", "색", "보석", "죽", "김치류", "젓갈"];
+    categoryOrder.forEach(category => {
+        if (!excludedCategories.includes(category)) {
+            displayFoodsByCategory("해로운 것", category);
         }
-    }
-    badFoodList.innerHTML = badHtml;
+    });
 }
 
 // 검색 기능
@@ -72,58 +94,74 @@ searchInput.addEventListener('input', (e) => {
 
     try {
         // 이로운 음식 검색
-        let goodHtml = '';
-        const sortedGoodCategories = sortCategories(foodData["이로운 것"]);
-        
-        for (const [category, foods] of sortedGoodCategories) {
-            const filteredFoods = foods.filter(food => 
-                food.toLowerCase().includes(query)
-            );
+        categoryOrder.forEach(category => {
+            const foods = foodData["이로운 것"][category] || [];
+            const filteredFoods = foods.filter(food => food.toLowerCase().includes(query));
+            const tabId = categoryMapping[category];
+            const containerId = `goodFood${tabId}`;
+            const container = document.getElementById(containerId);
             
-            if (filteredFoods.length > 0) {
-                goodHtml += `
-                    <div class="mb-4">
-                        <h4 class="text-success mb-3">${category}</h4>
+            if (container) {
+                if (filteredFoods.length > 0) {
+                    const html = `
                         <div class="list-group">
-                            ${filteredFoods.map(food => `
-                                <div class="list-group-item">${food}</div>
+                            ${filteredFoods.map((food, index) => `
+                                <div class="list-group-item ${getFoodColorClass(food, index)}">${food}</div>
                             `).join('')}
                         </div>
-                    </div>
-                `;
+                    `;
+                    container.innerHTML = html;
+                } else {
+                    container.innerHTML = '<p class="text-center text-muted">검색 결과가 없습니다.</p>';
+                }
             }
-        }
-        goodFoodList.innerHTML = goodHtml || '<p class="text-center text-muted">검색 결과가 없습니다.</p>';
+        });
 
         // 해로운 음식 검색
-        let badHtml = '';
-        const sortedBadCategories = sortCategories(foodData["해로운 것"]);
-        
-        for (const [category, foods] of sortedBadCategories) {
-            const filteredFoods = foods.filter(food => 
-                food.toLowerCase().includes(query)
-            );
-            
-            if (filteredFoods.length > 0) {
-                badHtml += `
-                    <div class="mb-4">
-                        <h4 class="text-danger mb-3">${category}</h4>
-                        <div class="list-group">
-                            ${filteredFoods.map(food => `
-                                <div class="list-group-item">${food}</div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
+        const excludedCategories = ["운동", "목욕", "색", "보석", "죽", "김치류", "젓갈"];
+        categoryOrder.forEach(category => {
+            if (!excludedCategories.includes(category)) {
+                const foods = foodData["해로운 것"][category] || [];
+                const filteredFoods = foods.filter(food => food.toLowerCase().includes(query));
+                const tabId = categoryMapping[category];
+                const containerId = `badFood${tabId}`;
+                const container = document.getElementById(containerId);
+                
+                if (container) {
+                    if (filteredFoods.length > 0) {
+                        const html = `
+                            <div class="list-group">
+                                ${filteredFoods.map((food, index) => `
+                                    <div class="list-group-item ${getFoodColorClass(food, index)}">${food}</div>
+                                `).join('')}
+                            </div>
+                        `;
+                        container.innerHTML = html;
+                    } else {
+                        container.innerHTML = '<p class="text-center text-muted">검색 결과가 없습니다.</p>';
+                    }
+                }
             }
-        }
-        badFoodList.innerHTML = badHtml || '<p class="text-center text-muted">검색 결과가 없습니다.</p>';
+        });
+
     } catch (error) {
         console.error('검색 중 오류:', error);
-        goodFoodList.innerHTML = '<p class="text-center text-muted">검색 중 일시적인 오류가 발생했습니다.</p>';
-        badFoodList.innerHTML = '<p class="text-center text-muted">검색 중 일시적인 오류가 발생했습니다.</p>';
+        categoryOrder.forEach(category => {
+            const tabId = categoryMapping[category];
+            const goodContainer = document.getElementById(`goodFood${tabId}`);
+            const badContainer = document.getElementById(`badFood${tabId}`);
+            
+            if (goodContainer) {
+                goodContainer.innerHTML = '<p class="text-center text-muted">검색 중 일시적인 오류가 발생했습니다.</p>';
+            }
+            if (badContainer && !["운동", "목욕", "색", "보석", "죽", "김치류", "젓갈"].includes(category)) {
+                badContainer.innerHTML = '<p class="text-center text-muted">검색 중 일시적인 오류가 발생했습니다.</p>';
+            }
+        });
     }
 });
 
-// 초기 목록 표시
-displayFoodList(); 
+// 페이지 로드 시 초기 목록 표시
+document.addEventListener('DOMContentLoaded', () => {
+    displayFoodList();
+}); 

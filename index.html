@@ -11,6 +11,7 @@
     <div class="container py-4">
         <h1 class="text-center mb-4">김은정의 체질 음식 가이드</h1>
         <h2 class="text-center mb-3 text-muted small">(少陽氣가 虛한 體質)</h2>
+        <p class="text-center mb-4">본인의 지식, 일반적인 상식과 달라도 이대로 따르셔야 건강이 좋아집니다.</p>
         
         <!-- 검색 기능 -->
         <div class="search-container mb-4">
@@ -32,8 +33,121 @@
                     <div class="card-header bg-success text-white">
                         <h3 class="card-title mb-0">이로운 음식</h3>
                     </div>
-                    <div class="card-body" id="goodFoodList">
-                        <!-- 카테고리별 음식이 여기에 동적으로 추가됩니다 -->
+                    <div class="card-body">
+                        <!-- 카테고리 탭 -->
+                        <ul class="nav nav-tabs" id="goodFoodTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#good-grain" type="button">곡류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-vegetable" type="button">야채류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-meat" type="button">육류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-fish" type="button">생선류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-seafood" type="button">해조류/해물류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-shellfish" type="button">패류/고동류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-fruit" type="button">과일류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-nuts" type="button">견과류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-kimchi" type="button">김치류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-jjot" type="button">젓갈</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-drink" type="button">차</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-oil" type="button">식용유</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-exercise" type="button">운동</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-bath" type="button">목욕</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-color" type="button">색</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-jewelry" type="button">보석</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-porridge" type="button">죽</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#good-etc" type="button">기타</button>
+                            </li>
+                        </ul>
+                        <!-- 탭 내용 -->
+                        <div class="tab-content pt-3" id="goodFoodTabContent">
+                            <div class="tab-pane fade show active" id="good-grain" role="tabpanel">
+                                <div id="goodFoodgrain"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-vegetable" role="tabpanel">
+                                <div id="goodFoodvegetable"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-meat" role="tabpanel">
+                                <div id="goodFoodmeat"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-fish" role="tabpanel">
+                                <div id="goodFoodfish"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-seafood" role="tabpanel">
+                                <div id="goodFoodseafood"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-shellfish" role="tabpanel">
+                                <div id="goodFoodshellfish"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-fruit" role="tabpanel">
+                                <div id="goodFoodfruit"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-nuts" role="tabpanel">
+                                <div id="goodFoodnuts"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-kimchi" role="tabpanel">
+                                <div id="goodFoodkimchi"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-jjot" role="tabpanel">
+                                <div id="goodFoodjjot"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-drink" role="tabpanel">
+                                <div id="goodFooddrink"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-oil" role="tabpanel">
+                                <div id="goodFoodoil"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-exercise" role="tabpanel">
+                                <div id="goodFoodexercise"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-bath" role="tabpanel">
+                                <div id="goodFoodbath"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-color" role="tabpanel">
+                                <div id="goodFoodcolor"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-jewelry" role="tabpanel">
+                                <div id="goodFoodjewelry"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-porridge" role="tabpanel">
+                                <div id="goodFoodporridge"></div>
+                            </div>
+                            <div class="tab-pane fade" id="good-etc" role="tabpanel">
+                                <div id="goodFoodetc"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,14 +158,108 @@
                     <div class="card-header bg-danger text-white">
                         <h3 class="card-title mb-0">해로운 음식</h3>
                     </div>
-                    <div class="card-body" id="badFoodList">
-                        <!-- 카테고리별 음식이 여기에 동적으로 추가됩니다 -->
+                    <div class="card-body">
+                        <!-- 카테고리 탭 -->
+                        <ul class="nav nav-tabs" id="badFoodTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#bad-grain" type="button">곡류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bad-vegetable" type="button">야채류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bad-meat" type="button">육류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bad-fish" type="button">생선류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bad-seafood" type="button">해조류/해물류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bad-shellfish" type="button">패류/고동류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bad-fruit" type="button">과일류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bad-nuts" type="button">견과류</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bad-drink" type="button">음료</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#bad-etc" type="button">기타</button>
+                            </li>
+                        </ul>
+                        <!-- 탭 내용 -->
+                        <div class="tab-content pt-3" id="badFoodTabContent">
+                            <div class="tab-pane fade show active" id="bad-grain" role="tabpanel">
+                                <div id="badFoodgrain"></div>
+                            </div>
+                            <div class="tab-pane fade" id="bad-vegetable" role="tabpanel">
+                                <div id="badFoodvegetable"></div>
+                            </div>
+                            <div class="tab-pane fade" id="bad-meat" role="tabpanel">
+                                <div id="badFoodmeat"></div>
+                            </div>
+                            <div class="tab-pane fade" id="bad-fish" role="tabpanel">
+                                <div id="badFoodfish"></div>
+                            </div>
+                            <div class="tab-pane fade" id="bad-seafood" role="tabpanel">
+                                <div id="badFoodseafood"></div>
+                            </div>
+                            <div class="tab-pane fade" id="bad-shellfish" role="tabpanel">
+                                <div id="badFoodshellfish"></div>
+                            </div>
+                            <div class="tab-pane fade" id="bad-fruit" role="tabpanel">
+                                <div id="badFoodfruit"></div>
+                            </div>
+                            <div class="tab-pane fade" id="bad-nuts" role="tabpanel">
+                                <div id="badFoodnuts"></div>
+                            </div>
+                            <div class="tab-pane fade" id="bad-drink" role="tabpanel">
+                                <div id="badFooddrink"></div>
+                            </div>
+                            <div class="tab-pane fade" id="bad-etc" role="tabpanel">
+                                <div id="badFoodetc"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- 특별 지침 -->
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h3 class="card-title mb-0">특별 지침</h3>
+            </div>
+            <div class="card-body">
+                <ol>
+                    <li>우유와 요구르트는 체질에 안 맞는 성분이 섞이지 않았을 때만 섭취</li>
+                    <li>기름진 식품, 튀김류, 생선류 피하기</li>
+                    <li>6번 체질은 수분섭취를 줄여야 하고, 물은 500ml 이하로 제한</li>
+                    <li>당뇨가 있는 경우에도 위 식단을 따라야 함</li>
+                    <li>다른 체질과는 달리 서양 의학적 소양 개념과 일치하므로 매운 음식 피하기</li>
+                    <li>글루텐이 포함된 음식은 소화불량 유발할 수 있음</li>
+                    <li>수면 전 식사는 체질에 맞는 음식으로만 하고 18시 이후 식사는 피하기</li>
+                    <li>식사 중간에 물 마시는 것은 체질에 맞지 않음</li>
+                    <li>밀가루 제품(빵, 쿠키, 케이크, 도넛 등) 제한</li>
+                    <li>인스턴트 음식, 과자류, 빙과류, 치킨, 피자 제한</li>
+                    <li>냉장고에 넣었던 음식물 바로 먹지 말고 상온에 두었다가 먹기</li>
+                    <li>눈(汽)이 갑자기 들어가는 것은 좋지 않으므로 냉장고 문 자주 열지 말기</li>
+                    <li>에어컨 직접 쏘이지 말고 선풍기 돌리기 피하기</li>
+                    <li>설사가 나기 쉬우므로 체질에 안 맞는 음식은 피하기</li>
+                    <li>밀가루 음식 많이 먹지 말기</li>
+                    <li>돼지고기, 닭고기, 오리고기, 양고기, 소고기, 염소고기 제한</li>
+                    <li>기름진 음식과 튀긴 음식 피하기</li>
+                </ol>
+            </div>
+        </div>
     </div>
 
+    <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="static/data.js"></script>
     <script src="static/script.js"></script>
