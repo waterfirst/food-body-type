@@ -30,12 +30,22 @@ const categoryMapping = {
     "음료": "drink"
 };
 
-// 카테고리 정렬 함수
-function sortCategories(categories) {
-    return Object.entries(categories).sort((a, b) => {
-        const indexA = categoryOrder.indexOf(a[0]);
-        const indexB = categoryOrder.indexOf(b[0]);
-        return indexA - indexB;
+// 해로운 음식 목록을 Set으로 변환하는 함수
+function getHarmfulFoodSet() {
+    const harmfulFoods = new Set();
+    Object.values(foodData["해로운 것"]).forEach(foods => {
+        foods.forEach(food => harmfulFoods.add(food));
+    });
+    return harmfulFoods;
+}
+
+// 이로운 음식에서 해로운 음식 제거
+function filterBeneficialFoods() {
+    const harmfulFoods = getHarmfulFoodSet();
+    Object.keys(foodData["이로운 것"]).forEach(category => {
+        foodData["이로운 것"][category] = foodData["이로운 것"][category].filter(
+            food => !harmfulFoods.has(food)
+        );
     });
 }
 
@@ -82,6 +92,9 @@ function displayFoodList() {
             return;
         }
 
+        // 이로운 음식에서 해로운 음식 제거
+        filterBeneficialFoods();
+
         // 이로운 음식 표시
         categoryOrder.forEach(category => {
             displayFoodsByCategory("이로운 것", category);
@@ -119,7 +132,10 @@ function initializeSearch() {
             // 이로운 음식 검색
             categoryOrder.forEach(category => {
                 const foods = foodData["이로운 것"][category] || [];
-                const filteredFoods = foods.filter(food => food.toLowerCase().includes(query));
+                const filteredFoods = foods.filter(food => 
+                    food.toLowerCase().includes(query) || 
+                    (food.includes('(') && food.toLowerCase().replace(/[()]/g, '').includes(query))
+                );
                 const tabId = categoryMapping[category];
                 const containerId = `goodFood${tabId}`;
                 const container = document.getElementById(containerId);
@@ -145,7 +161,10 @@ function initializeSearch() {
             categoryOrder.forEach(category => {
                 if (!excludedCategories.includes(category)) {
                     const foods = foodData["해로운 것"][category] || [];
-                    const filteredFoods = foods.filter(food => food.toLowerCase().includes(query));
+                    const filteredFoods = foods.filter(food => 
+                        food.toLowerCase().includes(query) || 
+                        (food.includes('(') && food.toLowerCase().replace(/[()]/g, '').includes(query))
+                    );
                     const tabId = categoryMapping[category];
                     const containerId = `badFood${tabId}`;
                     const container = document.getElementById(containerId);
